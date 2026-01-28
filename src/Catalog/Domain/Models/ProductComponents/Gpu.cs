@@ -1,0 +1,13 @@
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace Catalog.Domain.Models.ProductComponents
+{
+    public class Gpu<TBrand> : BaseComponent where TBrand : Enum
+    {
+        [BsonRepresentation(BsonType.String)]
+        public required TBrand Brand { get; set; }
+        public required string Model { get; set; }
+        public int VRAM { get; set; }
+    }
+}
