@@ -5,8 +5,8 @@ namespace Catalog.Domain.Models.ProductTypes
 {
     public class Laptop : Product
     {
-        public Cpu<ComputerCpuBrand>? Cpu { get; set; }
-        public Gpu<ComputerGpuBrand>? Gpu { get; set; }
-        public Display? Display { get; set; }
+        public required Cpu<ComputerCpuBrand> Cpu { get; set; }
+        public required Gpu<ComputerGpuBrand> Gpu { get; set; }
+        public required Display Display { get; set; }
     }
 }
