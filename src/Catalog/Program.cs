@@ -2,12 +2,12 @@
 using Catalog.Application.Factories;
 using Catalog.Application.Interfaces;
 using Catalog.Application.Strategies;
-using Catalog.Domain.Models;
 using Catalog.Domain.Models.Enums;
 using Catalog.Domain.Models.ProductComponents;
 using Catalog.Infrastructure.Persistence;
 using Catalog.Infrastructure.Services;
 using Catalog.Presentation.Mapping;
+using Microsoft.AspNetCore.HttpOverrides;
 using MongoDB.Bson.Serialization;
 using Scalar.AspNetCore;
 using System.Text.Json;
@@ -59,13 +59,29 @@ namespace Catalog
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
+            builder.Services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor |
+                    ForwardedHeaders.XForwardedProto |
+                    ForwardedHeaders.XForwardedHost;
+
+                // Placeholder until deployed to cloud environment
+                options.KnownNetworks.Clear();
+                options.KnownProxies.Clear();
+            });
+
             var app = builder.Build();
+
+            app.UseForwardedHeaders();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
                 app.MapScalarApiReference();
+
+                
             }
 
             app.UseHttpsRedirection();
