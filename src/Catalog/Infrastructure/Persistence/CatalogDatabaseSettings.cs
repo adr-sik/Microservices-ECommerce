@@ -1,4 +1,4 @@
-﻿namespace Catalog.Domain.Models
+﻿namespace Catalog.Infrastructure.Persistence
 {
     public class CatalogDatabaseSettings
     {

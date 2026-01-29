@@ -1,6 +1,6 @@
 ﻿using Catalog.Application.Interfaces;
-using Catalog.Domain.Models;
 using Catalog.Domain.Models.ProductComponents;
+using Catalog.Infrastructure.Persistence;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 

@@ -18,6 +18,11 @@ namespace Catalog.Infrastructure.Persistence
         {
             if (_isMapped) return;
 
+            BsonSerializer.RegisterSerializer(new EnumSerializer<ComputerCpuBrand>(BsonType.String));
+            BsonSerializer.RegisterSerializer(new EnumSerializer<ComputerGpuBrand>(BsonType.String));
+            BsonSerializer.RegisterSerializer(new EnumSerializer<MobileCpuBrand>(BsonType.String));
+            BsonSerializer.RegisterSerializer(new EnumSerializer<MobileGpuBrand>(BsonType.String));
+
             BsonClassMap.RegisterClassMap<Product>(cm =>
             {
                 cm.AutoMap();

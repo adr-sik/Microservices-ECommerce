@@ -1,4 +1,5 @@
 ﻿using Catalog.Domain.Models;
+using Catalog.Infrastructure.Persistence;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
