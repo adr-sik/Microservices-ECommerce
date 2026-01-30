@@ -22,22 +22,18 @@ namespace Catalog.Presentation.Controllers
         public async Task<ActionResult<BaseComponent>> Get(string id)
         {
             var component = await _componentsService.GetAsync(id);
-            if (component is null)
-            {
-                return NotFound();
-            }
             return component;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(BaseComponent newComponent)
+        public async Task<IActionResult> Post([FromBody] BaseComponent newComponent)
         {
             await _componentsService.CreateAsync(newComponent);
             return CreatedAtAction(nameof(Get), new { id = newComponent.Id }, newComponent);
         }
 
         [HttpPut("{id:length(24)}")]
-        public async Task<IActionResult> Update(string id, BaseComponent updatedComponent)
+        public async Task<IActionResult> Update(string id, [FromBody] BaseComponent updatedComponent)
         {
             var component = await _componentsService.GetAsync(id);
             if (component is null)

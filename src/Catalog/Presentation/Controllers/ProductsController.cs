@@ -35,7 +35,7 @@ namespace Catalog.Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(CreateProductRequest request)
+        public async Task<IActionResult> Post([FromBody] CreateProductRequest request)
         {
             Product newProduct = await _productFactory.BuildProductAsync(request);
 
@@ -44,13 +44,9 @@ namespace Catalog.Presentation.Controllers
         }
 
         [HttpPut("{id:length(24)}")]
-        public async Task<IActionResult> Update(string id, Product updatedProduct)
+        public async Task<IActionResult> Update(string id, [FromBody] Product updatedProduct)
         {
             var product = await _productsService.GetAsync(id);
-            if (product is null)
-            {
-                return NotFound();
-            }
             updatedProduct.Id = product.Id;
             await _productsService.UpdateAsync(id, updatedProduct);
             return NoContent();
