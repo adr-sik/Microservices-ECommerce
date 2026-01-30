@@ -52,7 +52,7 @@ namespace Catalog
                     {
                         Modifiers =
                         {
-                            JsonMappingExtensions.ConfigureJsonPolymorphism
+                            JsonMappingHelper.ConfigureJsonPolymorphism
                         }
                     };
                 });

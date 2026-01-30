@@ -6,7 +6,7 @@ using System.Text.Json.Serialization.Metadata;
 
 namespace Catalog.Presentation.Mapping
 {
-    public static class JsonMappingExtensions
+    public static class JsonMappingHelper
     {
         public static void ConfigureJsonPolymorphism(JsonTypeInfo jsonTypeInfo)
         {
