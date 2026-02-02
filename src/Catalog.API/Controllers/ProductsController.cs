@@ -1,4 +1,5 @@
 ﻿using Catalog.Application.Factories;
+using Catalog.Application.Interfaces;
 using Catalog.Application.Objects;
 using Catalog.Domain.Entities;
 using Catalog.Infrastructure.Services;
@@ -10,9 +11,9 @@ namespace Catalog.API.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-        private readonly ProductsService _productsService;
+        private readonly IProductsService _productsService;
         private readonly ProductFactory _productFactory;
-        public ProductsController(ProductsService productsService, ProductFactory productFactory)
+        public ProductsController(IProductsService productsService, ProductFactory productFactory)
         {
             _productsService = productsService;
             _productFactory = productFactory;

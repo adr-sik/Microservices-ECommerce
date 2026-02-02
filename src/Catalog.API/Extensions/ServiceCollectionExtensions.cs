@@ -14,7 +14,7 @@ namespace Catalog.API.Extensions
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
         {
-            services.AddSingleton<ProductsService>();
+            services.AddSingleton<IProductsService, ProductsService>();
             services.AddSingleton<IComponentsService, ComponentsService>();
 
             return services;
