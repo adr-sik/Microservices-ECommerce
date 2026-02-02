@@ -35,10 +35,6 @@ namespace Catalog.API.Controllers
         public async Task<IActionResult> Update(string id, [FromBody] BaseComponent updatedComponent)
         {
             var component = await _componentsService.GetAsync(id);
-            if (component is null)
-            {
-                return NotFound();
-            }
             updatedComponent.Id = component.Id;
             await _componentsService.UpdateAsync(id, updatedComponent);
             return NoContent();
@@ -48,10 +44,6 @@ namespace Catalog.API.Controllers
         public async Task<IActionResult> Delete(string id)
         {
             var component = await _componentsService.GetAsync(id);
-            if (component is null)
-            {
-                return NotFound();
-            }
             await _componentsService.RemoveAsync(id);
             return NoContent();
         }

@@ -27,10 +27,6 @@ namespace Catalog.API.Controllers
         public async Task<ActionResult<Product>> Get(string id)
         {
             var product = await _productsService.GetAsync(id);
-            if (product is null)
-            {
-                return NotFound();
-            }
             return product;
         }
 
@@ -56,10 +52,6 @@ namespace Catalog.API.Controllers
         public async Task<IActionResult> Delete(string id)
         {
             var product = await _productsService.GetAsync(id);
-            if (product is null)
-            {
-                return NotFound();
-            }
             await _productsService.RemoveAsync(id);
             return NoContent();
         }
