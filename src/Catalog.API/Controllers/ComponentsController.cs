@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Catalog.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ComponentsController : ControllerBase
     {
         private readonly IComponentsService _componentsService;

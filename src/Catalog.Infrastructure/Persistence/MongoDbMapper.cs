@@ -18,6 +18,9 @@ namespace Catalog.Infrastructure.Persistence
         {
             if (_isMapped) return;
 
+            // TODO: Enable in next PR
+            //BsonSerializer.RegisterSerializer(typeof(decimal), new DecimalSerializer(BsonType.Decimal128));
+
             BsonSerializer.RegisterSerializer(new EnumSerializer<ComputerCpuBrand>(BsonType.String));
             BsonSerializer.RegisterSerializer(new EnumSerializer<ComputerGpuBrand>(BsonType.String));
             BsonSerializer.RegisterSerializer(new EnumSerializer<MobileCpuBrand>(BsonType.String));

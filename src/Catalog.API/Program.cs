@@ -1,14 +1,6 @@
 
+using Catalog.API.Extensions;
 using Catalog.API.Mapping;
-using Catalog.Application.Factories;
-using Catalog.Application.Interfaces;
-using Catalog.Application.Strategies;
-using Catalog.Domain.Entities.ProductComponents;
-using Catalog.Domain.Enums;
-using Catalog.Infrastructure.Persistence;
-using Catalog.Infrastructure.Services;
-using Microsoft.AspNetCore.HttpOverrides;
-using MongoDB.Bson.Serialization;
 using Scalar.AspNetCore;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -23,24 +15,9 @@ namespace Catalog.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.Configure<CatalogDatabaseSettings>
-                (builder.Configuration.GetSection("CatalogDatabase"));
-
-            // Map MongoDB classes
-            MongoDbMapper.MapClasses();
-
-            builder.Services.AddSingleton<ProductsService>();
-            builder.Services.AddSingleton<IComponentsService, ComponentsService>();
-            builder.Services.AddScoped<ProductFactory>();
-
-            builder.Services.AddScoped<ICreateProductStrategy, CreateLaptopStrategy>();
-
-            BsonClassMap.RegisterClassMap<Cpu<ComputerCpuBrand>>();
-            BsonClassMap.RegisterClassMap<Cpu<MobileCpuBrand>>();
-            BsonClassMap.RegisterClassMap<Gpu<ComputerGpuBrand>>();
-            BsonClassMap.RegisterClassMap<Display>();
-
-            // Add services to the container.
+            builder.Services.AddApplicationServices();
+            builder.Services.AddInfrastructureServices();
+            builder.Services.AddMongoDbServices(builder.Configuration);
 
             builder.Services.AddControllers()
                 .AddJsonOptions(options =>
@@ -57,38 +34,26 @@ namespace Catalog.API
                         }
                     };
                 });
-            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
-            builder.Services.Configure<ForwardedHeadersOptions>(options =>
-            {
-                options.ForwardedHeaders =
-                    ForwardedHeaders.XForwardedFor |
-                    ForwardedHeaders.XForwardedProto |
-                    ForwardedHeaders.XForwardedHost;
-
-                // Placeholder until deployed to cloud environment
-                options.KnownNetworks.Clear();
-                options.KnownProxies.Clear();
-            });
+            builder.Services.AddForwardedHandler();
 
             var app = builder.Build();
 
             app.UseForwardedHeaders();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
                 app.MapScalarApiReference();
 
-
+                app.MapGet("/", () => Results.Redirect("/scalar/v1"))
+                    .ExcludeFromDescription();
             }
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
