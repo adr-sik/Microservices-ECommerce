@@ -21,7 +21,8 @@ namespace Catalog.Application.Factories
 
             if (strategy == null)
             {
-                throw new NotSupportedException($"Product type '{request.Type}' is not supported.");
+                return null;
+                throw new NotSupportedException($"Product type '{request.Type}' is not supported.");               
             }
 
             return await strategy.CreateProduct(request);

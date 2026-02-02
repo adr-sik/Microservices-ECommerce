@@ -34,9 +34,7 @@ namespace Catalog.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateProductRequest request)
         {
-            Product newProduct = await _productFactory.BuildProductAsync(request);
-
-            await _productsService.CreateAsync(newProduct);
+            Product newProduct = await _productsService.CreateAsync(request);
             return CreatedAtAction(nameof(Get), new { id = newProduct.Id }, newProduct);
         }
 
