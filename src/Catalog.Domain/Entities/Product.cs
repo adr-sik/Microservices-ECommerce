@@ -12,7 +12,7 @@ namespace Catalog.Domain.Entities
         public int Stock { get; set; }
         public string? Description { get; set; }
 
-        protected Product(string brand, string model, decimal price, int stock, string? description) 
+        protected Product(string brand, string model, decimal price, int stock, string? description)
         {
             Brand = brand;
             Model = model;
@@ -23,7 +23,7 @@ namespace Catalog.Domain.Entities
 
         public void SetIdentity(string id)
         {
-            if(!string.IsNullOrEmpty(Id))
+            if (!string.IsNullOrEmpty(Id))
                 throw DomainValidationException.IdentityAlreadyAssigned(this, id);
             Id = id;
         }

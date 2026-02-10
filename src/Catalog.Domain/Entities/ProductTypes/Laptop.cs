@@ -10,7 +10,7 @@ namespace Catalog.Domain.Entities.ProductTypes
         public Display Display { get; set; }
 
         public Laptop(
-            string brand, string model, decimal price,int stock,string? description, Cpu cpu, Gpu gpu, Display display) 
+            string brand, string model, decimal price, int stock, string? description, Cpu cpu, Gpu gpu, Display display)
             : base(brand, model, price, stock, description)
         {
             SetCpu(cpu);
