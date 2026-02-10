@@ -8,14 +8,12 @@ using System.Threading.Tasks;
 
 namespace Catalog.Domain.Exceptions
 {
-    public class DomainReferenceException : Exception
+    public class DomainReferenceException : CustomDomainException
     {
-        public string? ErrorCode { get; }
-        private DomainReferenceException(string message, string errorCode)
-            : base(message)
-        {
-            ErrorCode = errorCode;
-        }
+        public DomainReferenceException() { }
+        public DomainReferenceException(string message) : base(message) { }
+        public DomainReferenceException(string message, Exception innerException)
+            : base(message, innerException) { }
 
         public static DomainReferenceException NotFound(string id, string itemType)
             => new DomainReferenceException($"{itemType} with Id: {id} was not found.", "ID_NOTFOUND");
