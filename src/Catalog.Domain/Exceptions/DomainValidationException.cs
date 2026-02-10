@@ -18,6 +18,7 @@ namespace Catalog.Domain.Exceptions
 
         public static DomainValidationException IdentityAlreadyAssigned(IIdentityConstraint constraint, string id)
             => new($"Cannot assign identity '{id}' to an item that already has one '{constraint.Id}'");
+
         public static DomainValidationException IncompatibleProduct(IDesignConstraint component, Product product)
             => new($"Component {component.Id} was designed for '{component.DesignedFor}', but was assigned to {product.GetType().Name}");
     }
