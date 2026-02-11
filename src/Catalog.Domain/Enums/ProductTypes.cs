@@ -1,6 +1,6 @@
 ﻿namespace Catalog.Domain.Enums
 {
-    public enum ProductTypesEnum
+    public enum ProductTypes
     {
         Laptop,
         Phone

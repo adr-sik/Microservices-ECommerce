@@ -20,14 +20,14 @@ namespace Catalog.Domain.Entities.ProductTypes
 
         public void SetCpu(Cpu cpu)
         {
-            if (cpu.DesignedFor != Enums.ProductTypesEnum.Laptop)
+            if (cpu.DesignedFor != Enums.ProductTypes.Laptop)
                 throw DomainValidationException.IncompatibleProduct(cpu, this);
             Cpu = cpu;
         }
 
         public void SetGpu(Gpu gpu)
         {
-            if (gpu.DesignedFor != Enums.ProductTypesEnum.Laptop)
+            if (gpu.DesignedFor != Enums.ProductTypes.Laptop)
                 throw DomainValidationException.IncompatibleProduct(gpu, this);
             Gpu = gpu;
         }

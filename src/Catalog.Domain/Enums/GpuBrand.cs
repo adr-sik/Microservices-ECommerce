@@ -1,6 +1,6 @@
 ﻿namespace Catalog.Domain.Enums
 {
-    public enum GpuBrandEnum
+    public enum GpuBrand
     {
         AMD,
         Nvidia,

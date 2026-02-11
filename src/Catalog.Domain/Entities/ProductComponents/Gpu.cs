@@ -5,8 +5,8 @@ namespace Catalog.Domain.Entities.ProductComponents
 {
     public class Gpu : BaseComponent, IDesignConstraint
     {
-        public required ProductTypesEnum DesignedFor { get; set; }
-        public required GpuBrandEnum Brand { get; set; }
+        public required Enums.ProductTypes DesignedFor { get; set; }
+        public required GpuBrand Brand { get; set; }
         public required string Model { get; set; }
         public int VRAM { get; set; }
     }

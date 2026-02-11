@@ -1,6 +1,6 @@
 ﻿namespace Catalog.Domain.Enums
 {
-    public enum CpuBrandEnum
+    public enum CpuBrand
     {
         Intel,
         AMD,
