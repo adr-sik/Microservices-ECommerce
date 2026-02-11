@@ -1,8 +1,10 @@
-﻿namespace Catalog.Domain.Constraints
+﻿using Catalog.Domain.Enums;
+
+namespace Catalog.Domain.Constraints
 {
     public interface IDesignConstraint
     {
         string Id { get; }
-        Enums.ProductTypes DesignedFor { get; }
+        ProductType DesignedFor { get; }
     }
 }

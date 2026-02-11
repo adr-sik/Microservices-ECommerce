@@ -1,8 +1,12 @@
-﻿using Catalog.Domain.Entities.ProductComponents;
+﻿using Catalog.Domain.Attributes;
+using Catalog.Domain.Entities.ProductComponents;
+using Catalog.Domain.Enums;
 using Catalog.Domain.Exceptions;
+using Catalog.Domain.Extensions;
 
 namespace Catalog.Domain.Entities.ProductTypes
 {
+    [ProductCategory(ProductType.Laptop)]
     public class Laptop : Product
     {
         public Cpu Cpu { get; private set; }
@@ -20,15 +24,13 @@ namespace Catalog.Domain.Entities.ProductTypes
 
         public void SetCpu(Cpu cpu)
         {
-            if (cpu.DesignedFor != Enums.ProductTypes.Laptop)
-                throw DomainValidationException.IncompatibleProduct(cpu, this);
+            this.ValidateComponent(cpu);
             Cpu = cpu;
         }
 
         public void SetGpu(Gpu gpu)
         {
-            if (gpu.DesignedFor != Enums.ProductTypes.Laptop)
-                throw DomainValidationException.IncompatibleProduct(gpu, this);
+            this.ValidateComponent(gpu);
             Gpu = gpu;
         }
     }
