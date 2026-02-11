@@ -2,6 +2,6 @@
 {
     public interface IIdentityConstraint
     {
-        string? Id { get; }
+        string Id { get; }
     }
 }

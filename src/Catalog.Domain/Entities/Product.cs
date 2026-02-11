@@ -5,7 +5,7 @@ namespace Catalog.Domain.Entities
 {
     public abstract class Product : IIdentityConstraint
     {
-        public string? Id { get; protected set; }
+        public string Id { get; protected set; }
         public string Brand { get; set; }
         public string Model { get; set; }
         public decimal Price { get; set; }
