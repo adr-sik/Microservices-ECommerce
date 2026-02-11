@@ -1,4 +1,5 @@
 ﻿using Catalog.Domain.Constraints;
+using System.Data;
 
 namespace Catalog.Domain.Exceptions
 {
@@ -8,12 +9,12 @@ namespace Catalog.Domain.Exceptions
         public DomainReferenceException(string message, Exception innerException, string errorCode)
             : base(message, innerException, errorCode) { }
 
-        public static DomainReferenceException NotFound(IIdentityConstraint id, string itemType)
+        public static DomainReferenceException NotFound(string id, string itemType)
             => new($"{itemType} with Id: {id} was not found.",
                 "IDENTITY_NOT_FOUND");
 
-        public static DomainReferenceException TypeMismatch(IIdentityConstraint id, string expectedType, string actualType)
-            => new($"Item with Id: {id} is a '{actualType}' but was requested as a '{expectedType}'.",
+        public static DomainReferenceException TypeMismatch(IIdentityConstraint constraint, string expectedType, string actualType)
+            => new($"Item with Id: {constraint.Id} is a '{actualType}' but was requested as a '{expectedType}'.",
                 "TYPE_MISMATCH");
     }
 }
