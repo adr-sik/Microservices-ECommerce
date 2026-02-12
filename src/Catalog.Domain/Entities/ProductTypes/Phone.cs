@@ -5,9 +5,9 @@ using Catalog.Domain.Extensions;
 
 namespace Catalog.Domain.Entities.ProductTypes
 {
-    [ProductCategory(ProductType.Phone)]
     public class Phone : Product
     {
+        public override ProductType Type => ProductType.Phone;
         public Cpu Cpu { get; private set; }
         public Gpu Gpu { get; private set; }
         public Display Display { get; set; }
@@ -22,7 +22,7 @@ namespace Catalog.Domain.Entities.ProductTypes
             Display = display;
             Camera = camera;
         }
-
+        
         public void SetCpu(Cpu cpu)
         {
             this.ValidateComponent(cpu);

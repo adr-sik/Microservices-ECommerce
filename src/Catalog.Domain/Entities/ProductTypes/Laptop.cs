@@ -5,9 +5,9 @@ using Catalog.Domain.Extensions;
 
 namespace Catalog.Domain.Entities.ProductTypes
 {
-    [ProductCategory(ProductType.Laptop)]
     public class Laptop : Product
     {
+        public override ProductType Type => ProductType.Laptop;
         public Cpu Cpu { get; private set; }
         public Gpu Gpu { get; private set; }
         public Display Display { get; set; }

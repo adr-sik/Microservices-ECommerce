@@ -11,10 +11,7 @@ namespace Catalog.Domain.Extensions
         public static void ValidateComponent<T>(this Product product, T component)
                 where T : IDesignConstraint
         {
-            var productType = product.GetType().GetCustomAttribute<ProductCategoryAttribute>()?.Category
-                ?? throw new InvalidOperationException($"Product {product.GetType().Name} does not have a ProductCategoryAttribute");
-
-            if (component.DesignedFor != productType)
+            if (component.DesignedFor != product.Type)
                 throw DomainValidationException.IncompatibleProduct(component, product);
         }
     }
