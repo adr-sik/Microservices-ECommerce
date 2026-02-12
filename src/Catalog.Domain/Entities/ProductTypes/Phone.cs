@@ -1,7 +1,6 @@
 ﻿using Catalog.Domain.Attributes;
 using Catalog.Domain.Entities.ProductComponents;
 using Catalog.Domain.Enums;
-using Catalog.Domain.Exceptions;
 using Catalog.Domain.Extensions;
 
 namespace Catalog.Domain.Entities.ProductTypes

@@ -1,5 +1,4 @@
 ﻿using Catalog.Domain.Constraints;
-using System.Data;
 
 namespace Catalog.Domain.Exceptions
 {
