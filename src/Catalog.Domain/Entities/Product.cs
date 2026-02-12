@@ -1,15 +1,22 @@
 ﻿using Catalog.Domain.Constraints;
-using Catalog.Domain.Enums;
 using Catalog.Domain.Exceptions;
+using Catalog.Domain.ValueObjects;
 
 namespace Catalog.Domain.Entities
 {
-    public abstract class Product : IIdentityConstraint
+    public abstract class Product
     {
-        public string Id { get; protected set; }
+        public string Id { get; init; }
         public string Brand { get; set; }
         public string Model { get; set; }
-        public decimal Price { get; set; }
+
+        private Price _price;
+        public decimal Price
+        {
+            get => _price;
+            set => _price = new Price(value);
+        }
+
         public int Stock { get; set; }
         public string? Description { get; set; }
 
@@ -20,13 +27,6 @@ namespace Catalog.Domain.Entities
             Price = price;
             Stock = stock;
             Description = description;
-        }
-
-        public void SetIdentity(string id)
-        {
-            if (!string.IsNullOrEmpty(Id))
-                throw DomainValidationException.IdentityAlreadyAssigned(this, id);
-            Id = id;
         }
     }
 }
