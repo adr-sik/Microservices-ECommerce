@@ -1,5 +1,4 @@
 ﻿using Catalog.Domain.Constraints;
-using Catalog.Domain.Exceptions;
 
 namespace Catalog.Domain.Entities.ProductComponents
 {

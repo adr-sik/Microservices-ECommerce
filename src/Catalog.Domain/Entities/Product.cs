@@ -1,6 +1,4 @@
-﻿using Catalog.Domain.Constraints;
-using Catalog.Domain.Enums;
-using Catalog.Domain.Exceptions;
+﻿using Catalog.Domain.Enums;
 using Catalog.Domain.ValueObjects;
 
 namespace Catalog.Domain.Entities

@@ -1,5 +1,4 @@
-﻿using Catalog.Domain.Attributes;
-using Catalog.Domain.Entities.ProductComponents;
+﻿using Catalog.Domain.Entities.ProductComponents;
 using Catalog.Domain.Enums;
 using Catalog.Domain.Extensions;
 
@@ -10,7 +9,7 @@ namespace Catalog.Domain.Entities.ProductTypes
         public override ProductType Type => ProductType.Phone;
         public Cpu Cpu { get; private set; }
         public Gpu Gpu { get; private set; }
-        public Display Display { get; set; }
+        public Display Display { get; private set; }
         public Camera Camera { get; set; }
 
         public Phone(
@@ -19,10 +18,10 @@ namespace Catalog.Domain.Entities.ProductTypes
         {
             SetCpu(cpu);
             SetGpu(gpu);
-            Display = display;
+            SetDisplay(display);
             Camera = camera;
         }
-        
+
         public void SetCpu(Cpu cpu)
         {
             this.ValidateComponent(cpu);
@@ -33,6 +32,12 @@ namespace Catalog.Domain.Entities.ProductTypes
         {
             this.ValidateComponent(gpu);
             Gpu = gpu;
+        }
+
+        public void SetDisplay(Display display)
+        {
+            this.ValidateComponent(display);
+            Display = display;
         }
     }
 }

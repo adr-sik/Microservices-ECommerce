@@ -1,5 +1,4 @@
-﻿using Catalog.Domain.Attributes;
-using Catalog.Domain.Entities.ProductComponents;
+﻿using Catalog.Domain.Entities.ProductComponents;
 using Catalog.Domain.Enums;
 using Catalog.Domain.Extensions;
 
@@ -10,7 +9,7 @@ namespace Catalog.Domain.Entities.ProductTypes
         public override ProductType Type => ProductType.Laptop;
         public Cpu Cpu { get; private set; }
         public Gpu Gpu { get; private set; }
-        public Display Display { get; set; }
+        public Display Display { get; private set; }
 
         public Laptop(
             string brand, string model, decimal price, int stock, string? description, Cpu cpu, Gpu gpu, Display display)
@@ -18,7 +17,7 @@ namespace Catalog.Domain.Entities.ProductTypes
         {
             SetCpu(cpu);
             SetGpu(gpu);
-            Display = display;
+            SetDisplay(display);
         }
 
         public void SetCpu(Cpu cpu)
@@ -31,6 +30,12 @@ namespace Catalog.Domain.Entities.ProductTypes
         {
             this.ValidateComponent(gpu);
             Gpu = gpu;
+        }
+
+        public void SetDisplay(Display display)
+        {
+            this.ValidateComponent(display);
+            Display = display;
         }
     }
 }
