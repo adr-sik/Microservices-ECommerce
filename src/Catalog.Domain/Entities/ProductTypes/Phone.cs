@@ -10,7 +10,7 @@ namespace Catalog.Domain.Entities.ProductTypes
         public Cpu Cpu { get; private set; }
         public Gpu Gpu { get; private set; }
         public Display Display { get; private set; }
-        public Camera Camera { get; set; }
+        public Camera Camera { get; private set; }
 
         public Phone(
             string brand, string model, decimal price, int stock, string? description, Cpu cpu, Gpu gpu, Display display, Camera camera)
@@ -19,7 +19,7 @@ namespace Catalog.Domain.Entities.ProductTypes
             SetCpu(cpu);
             SetGpu(gpu);
             SetDisplay(display);
-            Camera = camera;
+            SetCamera(camera);
         }
 
         public void SetCpu(Cpu cpu)
@@ -38,6 +38,12 @@ namespace Catalog.Domain.Entities.ProductTypes
         {
             this.ValidateComponent(display);
             Display = display;
+        }
+
+        public void SetCamera(Camera camera)
+        {
+            this.ValidateComponent(camera);
+            Camera = camera;
         }
     }
 }
