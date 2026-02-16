@@ -40,8 +40,6 @@ namespace Catalog.Infrastructure.Persistence
                     .SetSerializer(new StringSerializer(BsonType.ObjectId))
                     .SetIdGenerator(StringObjectIdGenerator.Instance);
                 cm.SetIsRootClass(true);
-
-                MapDerivedClasses<BaseComponent>(cm);
             });
 
             _isMapped = true;
