@@ -23,8 +23,10 @@ namespace Catalog.Infrastructure.Repositories
         public async Task CreateAsync(BaseComponent newComponent) =>
             await _dbContext.Components.InsertOneAsync(newComponent);
 
-        public async Task UpdateAsync(string id, BaseComponent updatedComponent) =>
+        public async Task UpdateAsync(string id, BaseComponent updatedComponent)
+        {
             await _dbContext.Components.ReplaceOneAsync(x => x.Id == id, updatedComponent);
+        }
 
         public async Task RemoveAsync(string id) =>
             await _dbContext.Components.DeleteOneAsync(x => x.Id == id);
