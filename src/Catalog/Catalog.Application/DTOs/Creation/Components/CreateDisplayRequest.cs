@@ -4,7 +4,7 @@ namespace Catalog.Application.DTOs.Creation.Components
 {
     public record CreateDisplayRequest(
         ProductType DesignedFor,
-        double ScreenSizeInches,
+        decimal ScreenSizeInches,
         string Resolution,
         int RefreshRateHz,
         string Type = "Display"
