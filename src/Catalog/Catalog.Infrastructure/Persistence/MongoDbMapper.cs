@@ -15,7 +15,6 @@ namespace Catalog.Infrastructure.Persistence
         public static void MapClasses()
         {
             if (_isMapped) return;
-
             BsonSerializer.RegisterSerializer(new DecimalSerializer(BsonType.Decimal128));
 
             BsonSerializer.RegisterSerializer(new EnumSerializer<CpuBrand>(BsonType.String));
@@ -40,6 +39,7 @@ namespace Catalog.Infrastructure.Persistence
                     .SetSerializer(new StringSerializer(BsonType.ObjectId))
                     .SetIdGenerator(StringObjectIdGenerator.Instance);
                 cm.SetIsRootClass(true);
+                MapDerivedClasses<BaseComponent>(cm);
             });
 
             _isMapped = true;
