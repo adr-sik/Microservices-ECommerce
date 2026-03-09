@@ -10,6 +10,6 @@ namespace Catalog.Application.DTOs.Filtering
         public string? Model { get; set; }
         public decimal? MinPrice { get; set; }
         public decimal? MaxPrice { get; set; }
-        public List<ComponentFilter>? ComponentFilters { get; set; }
+        public List<ComponentFilter>? ComponentFilters { get; set; } = [];
     }
 }
