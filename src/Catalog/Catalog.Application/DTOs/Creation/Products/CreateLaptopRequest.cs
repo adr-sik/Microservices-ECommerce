@@ -9,7 +9,6 @@ namespace Catalog.Application.DTOs.Creation.Products
         decimal Price,
         int Stock, string?
         Description,
-
         string CpuId,
         string GpuId,
         string DisplayId
