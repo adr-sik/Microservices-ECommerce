@@ -2,14 +2,14 @@
 
 namespace Catalog.Domain.ValueObjects
 {
-    internal record Price
+    public record Price
     {
-        internal decimal Value { get; private set; }
+        public decimal Value { get; }
 
-        internal Price(decimal value)
+        public Price(decimal value)
         {
-            if (value < 0)
-                throw new DomainValidationException("Price cannot be negative.", nameof(value));
+            if (value <= 0)
+                throw new DomainValidationException("Price cannot be negative or 0.", nameof(value));
 
             Value = Math.Round(value, 2);
         }
