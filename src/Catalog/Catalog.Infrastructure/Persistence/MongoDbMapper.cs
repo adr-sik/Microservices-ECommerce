@@ -15,6 +15,7 @@ namespace Catalog.Infrastructure.Persistence
         public static void MapClasses()
         {
             if (_isMapped) return;
+
             BsonSerializer.RegisterSerializer(new DecimalSerializer(BsonType.Decimal128));
 
             BsonSerializer.RegisterSerializer(new EnumSerializer<CpuBrand>(BsonType.String));
