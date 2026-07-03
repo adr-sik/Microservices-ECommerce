@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option csharp_namespace = "Catalog.API.Protos";
+
+package catalog.api;
+
+service ProductService {
+	rpc GetProducts (GetProductsRequest) returns (GetProductsResponse);
+}
+
+message GetProductsRequest {
+	repeated string ids = 1;
+}
+
+message Product {
+	string ProductId = 1;
+	string ProductName = 2;
+	uint64 Price = 3;
+}
+
+message GetProductsResponse {
+	repeated Product products = 1;
+}
